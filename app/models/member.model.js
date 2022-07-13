@@ -1,5 +1,5 @@
-const { Sequelize, DataTypes, Model } = require('sequelize')
-const sequelize = new Sequelize('mysql::memory:')
+import { DataTypes } from 'sequelize';
+import sequelize from '../models/index.js'
 
 const Member = sequelize.define('members', {
     id: {
@@ -12,7 +12,7 @@ const Member = sequelize.define('members', {
     },
     idno: {
         type: DataTypes.BIGINT,
-        validate: isNumeric,
+        //validate: isNumeric,
     },
     krapin: {
         type: DataTypes.STRING,
@@ -21,12 +21,12 @@ const Member = sequelize.define('members', {
         type: DataTypes.STRING,
     },
     date_registered: {
-        type: DataTypes.DATETIME,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
     },
     email: {
         type: DataTypes.STRING,
-        validate: isEmail
+        //validate: isEmail
     },
     gender: {
         type: DataTypes.ENUM("Male","Female"),
@@ -45,10 +45,26 @@ const Member = sequelize.define('members', {
     },
     agent: {
         type: DataTypes.INTEGER,
-        validate: isInt
+        //validate: isInt
+    },
+    createdAt: {
+        field: 'createdon',
+        type: DataTypes.DATE
+    },
+    createdby: {
+        type: DataTypes.INTEGER,
+    },
+    updatedAt:{
+        field:  'lasteditedon',
+        type: DataTypes.DATE
+    },
+    lasteditedby: {
+        type: DataTypes.INTEGER
     }
 
 }, {
     tableName: 'members'
 }
 );
+
+export default Member

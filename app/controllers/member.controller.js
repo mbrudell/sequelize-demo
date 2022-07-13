@@ -1,8 +1,9 @@
-const db = require('../models')
-const Member = db.Member
-const Op = db.Sequelize.Op
+import Member from "../models/member.model.js"
 
-exports.findAll = (req, res) => {
+// const Member = db.Member
+// const Op = db.Sequelize.Op
+
+export const findAll = (req, res) => {
     const names = req.query.names;
     var condition = names ? { names: { [Op.like]: `%${names}%` } } : null;
     Member.findAll({ where: condition })
@@ -17,7 +18,7 @@ exports.findAll = (req, res) => {
     });                         
 };
 
-exports.create = (req, res) => {
+export const create = (req, res) => {
     // Validate request
     if (!req.body.names) {
       res.status(400).send({
@@ -53,7 +54,7 @@ exports.create = (req, res) => {
       });
   };
   
-  exports.findOne = (req, res) => {
+  export const findOne = (req, res) => {
     const id = req.params.id;
     Member.findByPk(id)
       .then(data => {
@@ -72,7 +73,7 @@ exports.create = (req, res) => {
       });
   };
 
-  exports.update = (req, res) => {
+  export const update = (req, res) => {
     const id = req.params.id;
     Member.update(req.body, {
       where: { id: id }
@@ -95,7 +96,7 @@ exports.create = (req, res) => {
       });
   };
   
-  exports.delete = (req, res) => {
+  export const deleteMember = (req, res) => {
     const id = req.params.id;
     Member.destroy({
       where: { id: id }
@@ -117,4 +118,6 @@ exports.create = (req, res) => {
         });
       });
   };
+
+// export default {create, update, findAll, findOne}
   
