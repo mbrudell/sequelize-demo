@@ -1,9 +1,6 @@
 import Member from "../models/member.model.js"
 
-// const Member = db.Member
-// const Op = db.Sequelize.Op
-
-export const findAll = (req, res) => {
+  export const findAll = (req, res) => {
     const names = req.query.names;
     var condition = names ? { names: { [Op.like]: `%${names}%` } } : null;
     Member.findAll({ where: condition })
@@ -16,9 +13,9 @@ export const findAll = (req, res) => {
             err.message || "Some error occurred while retrieving member."
         });
     });                         
-};
+  };
 
-export const create = (req, res) => {
+  export const create = (req, res) => {
     // Validate request
     if (!req.body.names) {
       res.status(400).send({
@@ -118,6 +115,4 @@ export const create = (req, res) => {
         });
       });
   };
-
-// export default {create, update, findAll, findOne}
   

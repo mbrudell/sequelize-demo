@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize'
 import sequelize from '../models/index.js'
 
 const Member = sequelize.define('members', {
@@ -7,12 +7,12 @@ const Member = sequelize.define('members', {
         autoIncrement: true,
         primaryKey: true
     },
-    names: {
-        type: DataTypes.STRING
-    },
+    names: DataTypes.STRING,
     idno: {
         type: DataTypes.BIGINT,
-        //validate: isNumeric,
+        validate: {
+            isNumeric: true
+        }
     },
     krapin: {
         type: DataTypes.STRING,
@@ -26,7 +26,9 @@ const Member = sequelize.define('members', {
     },
     email: {
         type: DataTypes.STRING,
-        //validate: isEmail
+        validate:{
+            isEmail: true,
+        } 
     },
     gender: {
         type: DataTypes.ENUM("Male","Female"),
@@ -45,7 +47,9 @@ const Member = sequelize.define('members', {
     },
     agent: {
         type: DataTypes.INTEGER,
-        //validate: isInt
+        validate:{
+            isInt: true
+        } 
     },
     createdAt: {
         field: 'createdon',
