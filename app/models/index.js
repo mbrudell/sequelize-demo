@@ -4,7 +4,7 @@ import { DB, USER, PASSWORD, HOST, dialect as _dialect, pool as _pool } from "..
 const sequelize = new Sequelize(DB, USER, PASSWORD, {
   host: HOST,
   dialect: _dialect,
-  operatorsAliases: false,
+  operatorsAliases: 0,
   pool: {
     max: _pool.max,
     min: _pool.min,

@@ -14,12 +14,8 @@ const Member = sequelize.define('members', {
             isNumeric: true
         }
     },
-    krapin: {
-        type: DataTypes.STRING,
-    },
-    mobileno: {
-        type: DataTypes.STRING,
-    },
+    krapin: DataTypes.STRING,
+    mobileno: DataTypes.STRING,
     date_registered: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
@@ -30,21 +26,16 @@ const Member = sequelize.define('members', {
             isEmail: true,
         } 
     },
-    gender: {
-        type: DataTypes.ENUM("Male","Female"),
-    },
+    gender: DataTypes.ENUM("Male","Female"),
     county: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
+        validate: {
+            isInt: true
+        }
     },
-    photo: {
-        type: DataTypes.STRING,
-    },
-    idcopy: {
-        type: DataTypes.STRING,
-    },
-    krapincopy: {
-        type: DataTypes.STRING,
-    },
+    photo: DataTypes.STRING,
+    idcopy: DataTypes.STRING,
+    krapincopy: DataTypes.STRING,
     agent: {
         type: DataTypes.INTEGER,
         validate:{
@@ -55,16 +46,12 @@ const Member = sequelize.define('members', {
         field: 'createdon',
         type: DataTypes.DATE
     },
-    createdby: {
-        type: DataTypes.INTEGER,
-    },
+    createdby: DataTypes.INTEGER,
     updatedAt:{
         field:  'lasteditedon',
         type: DataTypes.DATE
     },
-    lasteditedby: {
-        type: DataTypes.INTEGER
-    }
+    lasteditedby: DataTypes.INTEGER
 
 }, {
     tableName: 'members'
