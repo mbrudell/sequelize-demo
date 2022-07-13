@@ -13,8 +13,4 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
   }
 });
 
-// const db = {};
-// db.Sequelize = Sequelize;
-// db.sequelize = sequelize;
-// db.Member = require("./member.model.js")(sequelize, Sequelize);
 export default sequelize;
