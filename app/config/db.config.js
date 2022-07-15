@@ -1,7 +1,7 @@
-export const HOST = process.env.DB_HOST
-export const USER = process.env.DB_USER
-export const PASSWORD = process.env.DB_PASSWORD
-export const DB = process.env.DB_NAME
+export const HOST = process.env.MYSQLDB_HOST
+export const USER = process.env.MYSQLDB_USER
+export const PASSWORD = process.env.MYSQLDB_ROOT_PASSWORD
+export const DB = process.env.MYSQLDB_DATABASE
 export const dialect = "mysql";
 
 export const pool = {
