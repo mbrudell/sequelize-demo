@@ -1,6 +1,6 @@
 FROM node:16
 # Create app directory
-WORKDIR /
+WORKDIR .
 # Install app dependencies
 COPY package*.json ./
 RUN npm install
