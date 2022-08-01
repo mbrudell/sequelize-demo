@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../models/index.js'
+import { Membership } from './associations.model.js';
+import { County } from '../models/sys.model.js'
 
 const Member = sequelize.define('members', {
     id: {
@@ -55,7 +57,16 @@ const Member = sequelize.define('members', {
 
 }, {
     tableName: 'members'
-}
-);
+});
+
+//memberships
+Member.hasMany(Membership, {
+    foreignKey: 'memberid'
+})
+
+// county
+Member.belongsTo(County, {
+    foreignKey: 'county'
+})
 
 export default Member

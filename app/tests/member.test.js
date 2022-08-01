@@ -1,18 +1,11 @@
 import { jest } from '@jest/globals'
-// import fetch from 'node-fetch'
-
-import sequelize from '../models/index.js'
-// import Member from "../models/member.model.js"
+jest.useFakeTimers()
+// import sequelize from '../models/index.js'
 import { create, findAll, findOne, update, deleteMember } from '../controllers/member.controller'
-
-// jest.useFakeTimers()
-// beforeAll(() => {
-//     // sync db
-// })
 
 test('create member', async() => {
     expect.assertions(1)
-    const member = create({
+    const memberObj = {
         id: 6666,
         names: 'Maiko Ndirash Test',
         idno: '123456789',
@@ -26,7 +19,8 @@ test('create member', async() => {
         idcopy: '',
         krapincopy: '',
         agent: 1
-    })
+    }
+    const member = create(memberObj)
 
     expect(member.id).toEqual(6666)
 
@@ -34,12 +28,12 @@ test('create member', async() => {
 
 
 test('fetch members', async() => {
-    findAll({names: 'maiko ndirash'}).then((data) => {
+    findAll().then((data) => {
         expect(data.status).toEqual("success");
     });
 })
 
 
 afterAll(async () => {
-    await sequelize.close();
+    // await sequelize.close();
 });

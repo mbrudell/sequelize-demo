@@ -18,6 +18,14 @@ app.get("/", (req, res) => {
 import memberRoutes from './app/routes/member.routes.js'
 app.use('/api/members', memberRoutes)
 
+import mshipRoutes from './app/routes/membership.routes.js'
+app.use('/api', mshipRoutes)
+
+
+// Sys
+import sysRoutes from './app/routes/sys.routes.js'
+app.use('/api', sysRoutes)
+
 const PORT = process.env.NODE_LOCAL_PORT || 6868;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

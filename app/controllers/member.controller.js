@@ -1,9 +1,22 @@
 import Member from "../models/member.model.js"
+import { Membership } from "../models/associations.model.js";
+import { County } from "../models/sys.model.js"
 
   export const findAll = (req, res) => {
     const names = req.query.names;
     var condition = names ? { names: { [Op.like]: `%${names}%` } } : null;
-    Member.findAll({ where: condition })
+    Member.findAll({ 
+      where: condition,  
+      include: [{ 
+        model: County
+
+      },
+      {
+        model: Membership,
+        required: true
+      }
+    ]
+    })
         .then(data => {
         res.send(data);
         })
