@@ -13,14 +13,18 @@ import { County } from "../models/sys.model.js"
 
 export const fetchMemberships = (req, res) => {
     Membership.findAll({ 
+        attributes: ['member_ref', 'membershipno', 'date_registered', 'status'],
         include: [{
             model: Module,
+            attributes:['name'],
             required: true
         },
         {
             model: Member,
+            attributes:['names', 'idno', 'mobileno', 'gender'],
             include: {
-                model: County
+                model: County,
+                attributes:['county']
             }
         }
     ]
