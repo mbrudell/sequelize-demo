@@ -1,5 +1,6 @@
-import Membership from "../models/membership.model.js"
-import { Module } from "../models/associations.model.js"
+import { Membership, Module } from "../models/associations.model.js"
+import Member from "../models/member.model.js"
+import { County } from "../models/sys.model.js"
 
 
 // all memberships
@@ -12,10 +13,17 @@ import { Module } from "../models/associations.model.js"
 
 export const fetchMemberships = (req, res) => {
     Membership.findAll({ 
-        include: {
+        include: [{
             model: Module,
             required: true
+        },
+        {
+            model: Member,
+            include: {
+                model: County
+            }
         }
+    ]
     })
         .then(data => {
             res.send(data)

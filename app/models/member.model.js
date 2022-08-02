@@ -63,6 +63,7 @@ const Member = sequelize.define('members', {
 Member.hasMany(Membership, {
     foreignKey: 'memberid'
 })
+Membership.belongsTo(Member)
 
 // county
 Member.belongsTo(County, {
