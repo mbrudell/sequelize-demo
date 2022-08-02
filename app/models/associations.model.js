@@ -1,8 +1,10 @@
 import Membership from './membership.model.js'
 import { Module } from './sys.model.js'
 
-Membership.hasMany(Module);
-Module.belongsTo(Membership, {
+Module.hasOne(Membership, {
+    foreignKey: 'moduleid'
+});
+Membership.belongsTo(Module, {
     foreignKey: 'moduleid'
 });
 

@@ -1,5 +1,5 @@
 import Member from "../models/member.model.js"
-import { Membership } from "../models/associations.model.js";
+import { Membership, Module } from "../models/associations.model.js";
 import { County } from "../models/sys.model.js"
 
   export const findAll = (req, res) => {
@@ -13,7 +13,10 @@ import { County } from "../models/sys.model.js"
       },
       {
         model: Membership,
-        required: true
+        required: true,
+        include: {
+          model: Module
+        }
       }
     ]
     })
