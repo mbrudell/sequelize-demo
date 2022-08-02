@@ -1,3 +1,5 @@
+import { Op } from "sequelize"
+
 import { Membership, Module } from "../models/associations.model.js"
 import Member from "../models/member.model.js"
 import { County } from "../models/sys.model.js"
@@ -14,20 +16,25 @@ import { County } from "../models/sys.model.js"
 export const fetchMemberships = (req, res) => {
     Membership.findAll({ 
         attributes: ['member_ref', 'membershipno', 'date_registered', 'status'],
+        // where: { // left outer join
+        //     '$sys_module.name$': { [Op.eq] : 'SACCO'}
+        // },
         include: [{
             model: Module,
-            attributes:['name'],
-            required: true
+            attributes:[['name', 'module']],
+            required: true, // default: true #inner join#
+            // where : {  
+            //     name : 'SACCO'
+            // }
         },
         {
             model: Member,
             attributes:['names', 'idno', 'mobileno', 'gender'],
             include: {
                 model: County,
-                attributes:['county']
+                attributes:[['county', 'countyname']]
             }
-        }
-    ]
+        }]
     })
         .then(data => {
             res.send(data)
