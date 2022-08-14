@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../models/index.js'
-import { Membership } from './associations.model.js';
+import { Membership } from './associations.model.js'
 import { County } from '../models/sys.model.js'
 
 const Member = sequelize.define('members', {
@@ -54,7 +54,6 @@ const Member = sequelize.define('members', {
         type: DataTypes.DATE
     },
     lasteditedby: DataTypes.INTEGER
-
 }, {
     tableName: 'members'
 });

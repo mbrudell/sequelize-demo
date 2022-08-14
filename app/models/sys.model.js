@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize'
 import sequelize from './index.js'
-import Membership from "./membership.model.js"
 
 export const Module = sequelize.define('sys_modules', {
     id: {

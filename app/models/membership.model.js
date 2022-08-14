@@ -12,7 +12,7 @@ const Membership = sequelize.define('memberships', {
         type: DataTypes.INTEGER,
         notNull: true
     },
-    memberid:{
+    memberid: {
         type: DataTypes.INTEGER,
         notNull: true
     },

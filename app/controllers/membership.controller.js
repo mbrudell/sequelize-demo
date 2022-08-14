@@ -36,14 +36,14 @@ export const fetchMemberships = (req, res) => {
             }
         }]
     })
-        .then(data => {
-            res.send(data)
+    .then(data => {
+        res.send(data)
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Error occurred while fetching memberships"
         })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Error occurred while fetching memberships"
-            })
-        })
+    })
 }
 
 // new membership

@@ -9,7 +9,6 @@ import { County } from "../models/sys.model.js"
       where: condition,  
       include: [{ 
         model: County
-
       },
       {
         model: Membership,
