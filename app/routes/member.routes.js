@@ -3,7 +3,7 @@ import { create, findAll, findOne, update, deleteMember } from '../controllers/m
 
 const router = express.Router()
 
-router.post('/', create)
+router.post('/addMember', create)
 router.get('/', findAll)
 router.get('/:id', findOne)
 router.put('/:id', update)

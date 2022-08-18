@@ -27,6 +27,6 @@ import sysRoutes from './app/routes/sys.routes.js'
 app.use('/api', sysRoutes)
 
 const PORT = process.env.NODE_LOCAL_PORT || 6868;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}.`);
 });

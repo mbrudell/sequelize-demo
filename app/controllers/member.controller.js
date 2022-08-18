@@ -2,11 +2,14 @@ import Member from "../models/member.model.js"
 import { Membership, Module } from "../models/associations.model.js";
 import { County } from "../models/sys.model.js"
 
+import { createMembership } from './membership.controller.js'
+import { DATE } from "sequelize";
+
   export const findAll = (req, res) => {
-    const names = req.query.names;
-    var condition = names ? { names: { [Op.like]: `%${names}%` } } : null;
+    // const names = req.query.names;
+    // var condition = names ? { names: { [Op.like]: `%${names}%` } } : null;
     Member.findAll({ 
-      where: condition,  
+      // where: condition,  
       include: [{ 
         model: County
       },
@@ -53,9 +56,18 @@ import { County } from "../models/sys.model.js"
         krapincopy: req.body.krapincopy,
         agent: req.body.agent
     };
+
     // Save Member in the database
     Member.create(member)
       .then(data => {
+        Membership.create({
+            memberid: data.id,
+            member_ref: 48378734,
+            membershipno: Math.floor(Date.now() * Math.random()),
+            moduleid: req.body.moduleid,
+            status: req.body.status,
+            date_registered: req.body.date_registered
+        })
         res.send(data);
       })
       .catch(err => {
